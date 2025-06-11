@@ -44,14 +44,29 @@ Before you begin, ensure you have the following installed:
     ```
 
 4.  **Set up environment variables:**
-    The backend requires the `MISTRAL_API_KEY` environment variable to interact with the Mistral API.
-    *   You can set this variable directly in your shell:
+    The backend requires the `MISTRAL_API_KEY` to interact with the Mistral API. This is managed using a `.env` file.
+
+    *   In the `backend/` directory, copy the example environment file:
         ```bash
-        export MISTRAL_API_KEY="your_actual_api_key"
+        cp .env.example .env
         ```
-        (Use `set MISTRAL_API_KEY="your_actual_api_key"` for Windows Command Prompt or `$Env:MISTRAL_API_KEY="your_actual_api_key"` for PowerShell).
-    *   Alternatively, you can create a `.env` file in the `backend/` directory and store the key there. The application might need to be adapted to load `.env` files (e.g., using a library like `python-dotenv`). For simplicity in initial setup, direct export is described.
-        *(Note to project owner: If `.env` support is built-in or preferred, please update this instruction.)*
+    *   Open the newly created `.env` file in a text editor.
+    *   Replace `"your_api_key_here"` with your actual Mistral API key:
+        ```env
+        MISTRAL_API_KEY="your_actual_mistral_api_key"
+        ```
+    *   Save the `.env` file. The application will automatically load this key at startup.
+    *   **Important:** The `.env` file contains sensitive credentials and is ignored by Git (see `backend/.gitignore`). Do not commit it to your repository.
+
+    *As an alternative (e.g., for production deployments or specific CI/CD pipelines), you can still set the `MISTRAL_API_KEY` directly as an environment variable in your shell or system. If set, this will typically override the value in the `.env` file.*
+        ```bash
+        # Example for macOS/Linux:
+        # export MISTRAL_API_KEY="your_actual_api_key"
+        # Example for Windows Command Prompt:
+        # set MISTRAL_API_KEY="your_actual_api_key"
+        # Example for Windows PowerShell:
+        # $Env:MISTRAL_API_KEY="your_actual_api_key"
+        ```
 
 5.  **Run the backend server:**
     From the `backend/` directory:

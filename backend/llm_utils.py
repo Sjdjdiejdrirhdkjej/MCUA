@@ -1,8 +1,11 @@
 import os
 import json
 import logging
+from dotenv import load_dotenv # <--- Add this import
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
+
+load_dotenv() # <--- Call this function to load .env
 
 # Configure logging
 logger = logging.getLogger(__name__)
