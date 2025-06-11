@@ -1,4 +1,4 @@
 fastapi
 uvicorn[standard]
 pyppeteer
-mistralai
+mistralai # Consider pinning to a specific version e.g. mistralai==0.2.0. Recent unpinned versions caused: AttributeError: 'MistralClient' object has no attribute '_client'

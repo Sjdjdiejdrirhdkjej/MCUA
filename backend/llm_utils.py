@@ -75,7 +75,7 @@ async def get_mistral_action(user_message: str, chat_history: list[dict] | None 
     """
     Gets an action dictionary from Mistral AI based on user message and chat history.
     """
-    if not mistral_client.api_key:
+    if not MISTRAL_API_KEY:
         return {"action_type": "error", "parameters": {"content": "Mistral API key not configured."}}
 
     messages = [ChatMessage(role="system", content=get_action_prompt_system_message())]
@@ -151,7 +151,7 @@ async def get_mistral_vision_analysis(page_text_content: str, user_vision_prompt
     Analyzes text content from a webpage using Mistral AI to answer a user's question.
     This is a text-based "vision" model.
     """
-    if not mistral_client.api_key:
+    if not MISTRAL_API_KEY:
         return "Error: Mistral API key not configured."
 
     system_prompt = (
