@@ -2,8 +2,8 @@ import os
 import json
 import logging
 from dotenv import load_dotenv # <--- Add this import
-from mistralai.client import MistralClient
-from mistralai.models.chat_completion import ChatMessage
+from mistralai import Mistral # Changed client import
+# Removed ChatMessage import
 
 load_dotenv() # <--- Call this function to load .env
 
@@ -16,7 +16,7 @@ if not MISTRAL_API_KEY:
     logger.warning("MISTRAL_API_KEY environment variable not set. LLM calls will likely fail.")
     # You could raise an error here, or let it fail when used. For now, just warn.
 
-mistral_client = MistralClient(api_key=MISTRAL_API_KEY)
+mistral_client = Mistral(api_key=MISTRAL_API_KEY) # Changed client instantiation
 
 ACTION_MODEL_NAME = os.getenv("MISTRAL_ACTION_MODEL_NAME", "mistral-small-latest")
 VISION_MODEL_NAME = os.getenv("MISTRAL_VISION_MODEL_NAME", "mistral-small-latest") # Using a text-based model for "vision"
@@ -81,14 +81,14 @@ async def get_mistral_action(user_message: str, chat_history: list[dict] | None 
     if not MISTRAL_API_KEY:
         return {"action_type": "error", "parameters": {"content": "Mistral API key not configured."}}
 
-    messages = [ChatMessage(role="system", content=get_action_prompt_system_message())]
+    messages = [{"role": "system", "content": get_action_prompt_system_message()}]
     if chat_history:
         for entry in chat_history:
             # Ensure role and content are present
             if "role" in entry and "content" in entry:
-                 messages.append(ChatMessage(role=entry["role"], content=str(entry["content"]))) # Ensure content is string
+                 messages.append({"role": entry["role"], "content": str(entry["content"])}) # Ensure content is string
 
-    messages.append(ChatMessage(role="user", content=user_message))
+    messages.append({"role": "user", "content": user_message})
 
     logger.debug(f"Sending to Mistral Action Model ({ACTION_MODEL_NAME}): {messages}")
 
@@ -172,8 +172,8 @@ async def get_mistral_vision_analysis(page_text_content: str, user_vision_prompt
     combined_prompt = f"Webpage Text Content:\n---\n{truncated_page_content}\n---\nUser's Question: {user_vision_prompt}"
 
     messages = [
-        ChatMessage(role="system", content=system_prompt),
-        ChatMessage(role="user", content=combined_prompt)
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": combined_prompt}
     ]
     logger.debug(f"Sending to Mistral Vision Model ({VISION_MODEL_NAME}): {messages}")
 

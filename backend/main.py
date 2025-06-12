@@ -14,8 +14,8 @@ logging.basicConfig(
 # logging.getLogger('pyppeteer').setLevel(logging.DEBUG)
 # logging.getLogger('websockets').setLevel(logging.DEBUG) # Pyppeteer uses websockets
 
-from .orchestrator import Orchestrator
-from .browser_utils import browser_manager_instance, PYPPETEER_CHROMIUM_REVISION
+from orchestrator import Orchestrator
+from browser_utils import browser_manager_instance, PYPPETEER_CHROMIUM_REVISION
 
 app = FastAPI()
 

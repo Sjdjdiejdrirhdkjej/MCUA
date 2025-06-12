@@ -1,0 +1,27 @@
+INFO:     Will watch for changes in these directories: ['/app']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [2847] using WatchFiles
+2025-06-12 07:03:09 - llm_utils - WARNING - MISTRAL_API_KEY environment variable not set. LLM calls will likely fail.
+INFO:     Started server process [2850]
+INFO:     Waiting for application startup.
+2025-06-12 07:03:09 - backend.main - INFO - Application startup sequence initiated...
+2025-06-12 07:03:09 - browser_utils - INFO - Chromium (default revision for installed pyppeteer) not found. Downloading revision 1263111 as fallback/specific...
+2025-06-12 07:03:09 - backend.main - ERROR - Critical error during Chromium download/setup on startup: download_chromium() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "/app/backend/main.py", line 30, in startup_event
+    await browser_manager_instance.ensure_chromium_downloaded()
+  File "/app/backend/browser_utils.py", line 72, in ensure_chromium_downloaded
+    download_chromium(PYPPETEER_CHROMIUM_REVISION)
+TypeError: download_chromium() takes 0 positional arguments but 1 was given
+2025-06-12 07:03:09 - backend.main - INFO - Browser setup check complete. Browser launch will occur on first browser-related command.
+2025-06-12 07:03:09 - backend.main - INFO - Application startup sequence finished.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-12 07:03:26 - backend.main - INFO - Application shutdown sequence initiated...
+2025-06-12 07:03:26 - browser_utils - INFO - Attempting to close browser...
+2025-06-12 07:03:26 - browser_utils - INFO - Browser was not running or already disconnected.
+2025-06-12 07:03:26 - backend.main - INFO - Browser closed. Application shutdown sequence complete.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2850]
+INFO:     Stopping reloader process [2847]

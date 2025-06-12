@@ -1,8 +1,8 @@
 # from .mock_models import mock_action_model, mock_vision_model # No longer used
-from .terminal_utils import run_shell_command, run_background_command
-from .file_utils import write_cua_file, read_cua_file
-from .browser_utils import browser_manager_instance as browser_manager
-from .llm_utils import get_mistral_action, get_mistral_vision_analysis # Import Mistral functions
+from terminal_utils import run_shell_command, run_background_command
+from file_utils import write_cua_file, read_cua_file
+from browser_utils import browser_manager_instance as browser_manager
+from llm_utils import get_mistral_action, get_mistral_vision_analysis # Import Mistral functions
 import asyncio
 import json
 import base64

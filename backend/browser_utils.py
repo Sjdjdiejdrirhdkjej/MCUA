@@ -64,22 +64,28 @@ class BrowserManager:
         return cls._instance
 
     async def ensure_chromium_downloaded(self):
-        if not check_chromium(PYPPETEER_CHROMIUM_REVISION):
-            logger.info(f"Chromium revision {PYPPETEER_CHROMIUM_REVISION} not found. Downloading...")
-            download_chromium(PYPPETEER_CHROMIUM_REVISION)
-            logger.info("Chromium download complete.")
+        if not check_chromium(): # Changed: Removed PYPPETEER_CHROMIUM_REVISION argument
+            logger.info(f"Chromium (default revision for installed pyppeteer) not found. Downloading revision {PYPPETEER_CHROMIUM_REVISION} as fallback/specific...")
+            # We still use PYPPETEER_CHROMIUM_REVISION for download, as check_chromium() with no args
+            # checks for *a* valid Chromium, not necessarily our specific one.
+            # If default is missing, we definitely want to download our specified one.
+            download_chromium() # Changed: Removed argument
+            logger.info(f"Chromium download attempt for default revision complete (intended: {PYPPETEER_CHROMIUM_REVISION}).")
         else:
-            logger.info(f"Chromium revision {PYPPETEER_CHROMIUM_REVISION} already downloaded.")
+            logger.info(f"A Chromium revision is already available (checked via check_chromium()). Verifying specified revision {PYPPETEER_CHROMIUM_REVISION} path...")
+            # Even if check_chromium() is true, we want to ensure OUR specific revision's path is used.
+            # The `chromium_executable` function will give us the path for our specific revision.
 
         # Get executable path after ensuring download
         self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION)
         if not os.path.exists(self.executable_path):
-            logger.error(f"Chromium executable not found at {self.executable_path} after download check. This should not happen.")
+            logger.warning(f"Chromium executable for revision {PYPPETEER_CHROMIUM_REVISION} not found at {self.executable_path} after initial check/download. Attempting explicit download of default revision.")
             # Attempt download again if path doesn't exist, could be an issue with pyppeteer's check/download logic
-            download_chromium(PYPPETEER_CHROMIUM_REVISION)
-            self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION)
+            # or if the default check_chromium() passed but our specific revision is missing.
+            download_chromium() # Changed: Removed argument
+            self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION) # Re-evaluate path
             if not os.path.exists(self.executable_path):
-                 raise FileNotFoundError(f"Chromium executable still not found at {self.executable_path}.")
+                 raise FileNotFoundError(f"Chromium executable for revision {PYPPETEER_CHROMIUM_REVISION} still not found at {self.executable_path} after fresh download attempt of default revision.")
         logger.info(f"Using Chromium executable at: {self.executable_path}")
 
 
