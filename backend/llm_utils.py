@@ -71,6 +71,7 @@ Output ONLY the JSON command. Do not include any other text, explanations, or ma
 The JSON should be a single object with "action_type" and "parameters" (which is another object).
 If the user's request is unclear or lacks necessary information for a command, use the "message" action_type to ask for clarification.
 If a command is trivial e.g. "say hello", use the "message" action_type.
+If the user's input is a general question (e.g., 'What is the capital of France?', 'How does photosynthesis work?'), a greeting, or a simple request for information you possess, and it does not fit any of the other defined actions, use the 'message' action_type to provide a direct textual response.
 """
     return prompt.strip()
 
