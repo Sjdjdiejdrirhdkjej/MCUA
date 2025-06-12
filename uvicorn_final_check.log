@@ -1,0 +1,29 @@
+INFO:     Will watch for changes in these directories: ['/app']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [3026] using WatchFiles
+2025-06-12 07:05:08 - llm_utils - WARNING - MISTRAL_API_KEY environment variable not set. LLM calls will likely fail.
+INFO:     Started server process [3029]
+INFO:     Waiting for application startup.
+2025-06-12 07:05:08 - backend.main - INFO - Application startup sequence initiated...
+2025-06-12 07:05:08 - browser_utils - INFO - Chromium (default revision for installed pyppeteer) not found. Downloading revision 1263111 as fallback/specific...
+[INFO] Starting Chromium download.
+2025-06-12 07:05:08 - pyppeteer.chromium_downloader - INFO - Starting Chromium download.
+  0%|          | 0.00/181M [00:00<?, ?b/s]  2%|▏         | 4.15M/181M [00:00<00:04, 41.4Mb/s]  5%|▌         | 9.23M/181M [00:00<00:03, 46.9Mb/s]  8%|▊         | 14.8M/181M [00:00<00:03, 51.1Mb/s] 11%|█         | 20.1M/181M [00:00<00:03, 51.6Mb/s] 16%|█▌        | 28.7M/181M [00:00<00:02, 64.0Mb/s] 19%|█▉        | 35.1M/181M [00:00<00:02, 59.0Mb/s] 23%|██▎       | 41.1M/181M [00:00<00:02, 51.9Mb/s] 26%|██▌       | 46.4M/181M [00:00<00:02, 48.2Mb/s] 28%|██▊       | 51.4M/181M [00:01<00:02, 45.0Mb/s] 31%|███       | 56.0M/181M [00:01<00:02, 43.7Mb/s] 33%|███▎      | 60.7M/181M [00:01<00:02, 44.7Mb/s] 36%|███▌      | 65.3M/181M [00:01<00:02, 43.3Mb/s] 38%|███▊      | 69.6M/181M [00:01<00:02, 39.6Mb/s] 41%|████      | 73.7M/181M [00:01<00:02, 39.9Mb/s] 43%|████▎     | 77.8M/181M [00:01<00:02, 39.3Mb/s] 45%|████▌     | 82.2M/181M [00:01<00:02, 40.5Mb/s] 48%|████▊     | 86.5M/181M [00:01<00:02, 41.3Mb/s] 50%|████▉     | 90.7M/181M [00:02<00:02, 39.8Mb/s] 52%|█████▏    | 94.9M/181M [00:02<00:02, 40.5Mb/s] 55%|█████▍    | 99.2M/181M [00:02<00:01, 41.2Mb/s] 57%|█████▋    | 104M/181M [00:02<00:01, 42.8Mb/s]  60%|█████▉    | 108M/181M [00:02<00:01, 43.7Mb/s] 62%|██████▏   | 113M/181M [00:02<00:01, 43.7Mb/s] 65%|██████▍   | 117M/181M [00:02<00:01, 40.7Mb/s] 67%|██████▋   | 121M/181M [00:02<00:01, 41.1Mb/s] 69%|██████▉   | 126M/181M [00:02<00:01, 41.4Mb/s] 72%|███████▏  | 130M/181M [00:02<00:01, 41.0Mb/s] 74%|███████▍  | 134M/181M [00:03<00:01, 42.3Mb/s] 77%|███████▋  | 139M/181M [00:03<00:00, 42.8Mb/s] 79%|███████▉  | 143M/181M [00:03<00:00, 43.4Mb/s] 82%|████████▏ | 148M/181M [00:03<00:00, 44.0Mb/s] 84%|████████▍ | 152M/181M [00:03<00:00, 43.7Mb/s] 86%|████████▋ | 157M/181M [00:03<00:00, 43.5Mb/s] 89%|████████▊ | 161M/181M [00:03<00:00, 42.5Mb/s] 91%|█████████ | 165M/181M [00:03<00:00, 42.3Mb/s] 93%|█████████▎| 169M/181M [00:03<00:00, 41.7Mb/s] 96%|█████████▌| 174M/181M [00:03<00:00, 42.5Mb/s] 98%|█████████▊| 178M/181M [00:04<00:00, 42.4Mb/s]100%|██████████| 181M/181M [00:04<00:00, 43.8Mb/s]
+[INFO] Beginning extraction
+2025-06-12 07:05:18 - pyppeteer.chromium_downloader - INFO - Beginning extraction
+[INFO] Chromium extracted to: /home/swebot/.local/share/pyppeteer/local-chromium/1263111
+2025-06-12 07:05:31 - pyppeteer.chromium_downloader - INFO - Chromium extracted to: /home/swebot/.local/share/pyppeteer/local-chromium/1263111
+2025-06-12 07:05:31 - browser_utils - INFO - Chromium download attempt for default revision complete (intended: 1263111).
+2025-06-12 07:05:31 - backend.main - ERROR - Critical error during Chromium download/setup on startup: chromium_executable() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "/app/backend/main.py", line 30, in startup_event
+    await browser_manager_instance.ensure_chromium_downloaded()
+  File "/app/backend/browser_utils.py", line 80, in ensure_chromium_downloaded
+    self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION)
+TypeError: chromium_executable() takes 0 positional arguments but 1 was given
+2025-06-12 07:05:31 - backend.main - INFO - Browser setup check complete. Browser launch will occur on first browser-related command.
+2025-06-12 07:05:31 - backend.main - INFO - Application startup sequence finished.
+INFO:     Application startup complete.
+INFO:     Stopping reloader process [3026]
+/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

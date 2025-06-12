@@ -77,16 +77,20 @@ class BrowserManager:
             # The `chromium_executable` function will give us the path for our specific revision.
 
         # Get executable path after ensuring download
-        self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION)
+        self.executable_path = chromium_executable() # Changed: Removed argument
         if not os.path.exists(self.executable_path):
-            logger.warning(f"Chromium executable for revision {PYPPETEER_CHROMIUM_REVISION} not found at {self.executable_path} after initial check/download. Attempting explicit download of default revision.")
+            logger.warning(f"Chromium executable for default revision not found at {self.executable_path} after initial check/download. Attempting explicit download of default revision.")
             # Attempt download again if path doesn't exist, could be an issue with pyppeteer's check/download logic
             # or if the default check_chromium() passed but our specific revision is missing.
-            download_chromium() # Changed: Removed argument
-            self.executable_path = chromium_executable(PYPPETEER_CHROMIUM_REVISION) # Re-evaluate path
+            download_chromium() # Already changed
+            self.executable_path = chromium_executable() # Changed: Removed argument. Re-evaluate path
             if not os.path.exists(self.executable_path):
-                 raise FileNotFoundError(f"Chromium executable for revision {PYPPETEER_CHROMIUM_REVISION} still not found at {self.executable_path} after fresh download attempt of default revision.")
-        logger.info(f"Using Chromium executable at: {self.executable_path}")
+                 raise FileNotFoundError(f"Chromium executable for default revision still not found at {self.executable_path} after fresh download attempt.")
+        # Note: PYPPETEER_CHROMIUM_REVISION is now effectively unused in this function directly,
+        # as pyppeteer 2.0.0's downloader functions seem to manage the revision internally.
+        # If a specific revision was critical and different from pyppeteer's default,
+        # this would require a different approach (e.g. different pyppeteer version or env vars).
+        logger.info(f"Using Chromium executable at: {self.executable_path} (intended revision was {PYPPETEER_CHROMIUM_REVISION})")
 
 
     async def launch_browser(self):

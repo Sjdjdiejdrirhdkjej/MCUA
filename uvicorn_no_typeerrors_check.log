@@ -1,0 +1,22 @@
+INFO:     Will watch for changes in these directories: ['/app']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [3254] using WatchFiles
+2025-06-12 07:16:25 - llm_utils - WARNING - MISTRAL_API_KEY environment variable not set. LLM calls will likely fail.
+INFO:     Started server process [3257]
+INFO:     Waiting for application startup.
+2025-06-12 07:16:25 - backend.main - INFO - Application startup sequence initiated...
+2025-06-12 07:16:25 - browser_utils - INFO - A Chromium revision is already available (checked via check_chromium()). Verifying specified revision 1263111 path...
+2025-06-12 07:16:25 - browser_utils - INFO - Using Chromium executable at: /home/swebot/.local/share/pyppeteer/local-chromium/1263111/chrome-linux/chrome (intended revision was 1263111)
+2025-06-12 07:16:25 - backend.main - INFO - Chromium download/availability check complete via BrowserManager.
+2025-06-12 07:16:25 - backend.main - INFO - Browser setup check complete. Browser launch will occur on first browser-related command.
+2025-06-12 07:16:25 - backend.main - INFO - Application startup sequence finished.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-06-12 07:16:48 - backend.main - INFO - Application shutdown sequence initiated...
+2025-06-12 07:16:48 - browser_utils - INFO - Attempting to close browser...
+2025-06-12 07:16:48 - browser_utils - INFO - Browser was not running or already disconnected.
+2025-06-12 07:16:48 - backend.main - INFO - Browser closed. Application shutdown sequence complete.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3257]
+INFO:     Stopping reloader process [3254]
