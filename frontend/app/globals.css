@@ -1,26 +1,155 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* globals.css */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Header Styles */
+p-4.bg-white.shadow-md.flex.items-center {
+  padding: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+/* Logo Styles */
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+/* Title Styles */
+.text-2xl.font-bold.text-gray-800 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+/* Layout Styles */
+.flex.flex-col.h-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.flex.flex-1.overflow-hidden {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Chat Panel Styles */
+.w-2/3.border-r.bg-gray-100 {
+  width: 66.666667%;
+  border-right: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+/* Right Panel Styles */
+.w-1/3.bg-gray-50 {
+  width: 33.333333%;
+  background-color: #f9fafb;
+}
+
+/* Message Area Styles */
+.flex.flex-col.h-full {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-1.overflow-y-auto.p-4 {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Message Styles */
+.p-4.mb-4.rounded-lg.max-w-xs {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  max-width: 20rem;
+}
+
+/* User Message Styles */
+.bg-blue-500.text-white.ml-auto {
+  background-color: #3b82f6;
+  color: #ffffff;
+  margin-left: auto;
+}
+
+/* Manus Message Styles */
+.bg-white.text-gray-800 {
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+/* Timestamp Styles */
+.text-xs.text-gray-500.mt-1 {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 0.25rem;
+}
+
+/* Input Box Styles */
+.p-4.border-t {
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Select Styles */
+.mb-2.p-2.border.rounded-lg.w-full {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+/* Input Field Styles */
+.w-full.p-2.border.rounded-lg {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+}
+
+/* Button Styles */
+.mt-2.text-white.p-2.rounded-lg.w-full {
+  margin-top: 0.5rem;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+/* Dark Mode Button Styles */
+.mt-2.bg-gray-700.text-white.p-2.rounded-lg.w-full {
+  margin-top: 0.5rem;
+  background-color: #4a5568;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+/* Light Mode Button Styles */
+.mt-2.bg-gray-300.text-white.p-2.rounded-lg.w-full {
+  margin-top: 0.5rem;
+  background-color: #e2e8f0;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
 }
